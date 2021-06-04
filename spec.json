@@ -1,0 +1,322 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Slim Json Schema",
+    "description": "",
+    "version": ""
+  },
+  "servers": [],
+  "tags": [],
+  "paths": {
+    "/users": {
+      "post": {
+        "summary": "User",
+        "description": "",
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "maxLength": 34
+                  },
+                  "email_address": {
+                    "type": "string",
+                    "maxLength": 255
+                  }
+                },
+                "required": [
+                  "username",
+                  "email_address"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "enum": [
+                    "application/json"
+                  ]
+                },
+                "description": ""
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "application_id": {
+                          "type": "string"
+                        },
+                        "upstream": {
+                          "type": "array",
+                          "items": {
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "required": [
+                        "application_id",
+                        "upstream"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "enum": [
+                    "application/json"
+                  ]
+                },
+                "description": ""
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean"
+                    },
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "context": {
+                      "type": "array",
+                      "items": []
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "code",
+                    "message",
+                    "context"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "enum": [
+                    "application/json"
+                  ]
+                },
+                "description": ""
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean"
+                    },
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "context": {
+                      "type": "array",
+                      "items": []
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "code",
+                    "message",
+                    "context"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "method not allowed",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "enum": [
+                    "application/json"
+                  ]
+                },
+                "description": ""
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean"
+                    },
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "context": {
+                      "type": "array",
+                      "items": []
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "code",
+                    "message",
+                    "context"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unrecoverable error",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "enum": [
+                    "application/json"
+                  ]
+                },
+                "description": ""
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean"
+                    },
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "context": {
+                      "type": "array",
+                      "items": []
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "code",
+                    "message",
+                    "context"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "enum": [
+                    "application/json"
+                  ]
+                },
+                "description": ""
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean"
+                    },
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "context": {
+                      "type": "array",
+                      "items": []
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "code",
+                    "message",
+                    "context"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/json"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

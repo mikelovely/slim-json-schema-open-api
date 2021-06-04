@@ -1,0 +1,239 @@
+{
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "description": "This can be used by Swagger to group routes together",
+      "items": {
+        "type": "string"
+      }
+    },
+    "deprecated": {
+      "type": "boolean"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "method": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string",
+      "description": "A path can contain references to parameters defined in `pathParams` by using `{paramName}`"
+    },
+    "pathParams": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "jsonSchema": {"$ref": "#/definitions/jsonSchema"},
+          "required": {
+            "type": "boolean"
+          },
+          "regex": {
+            "type": "string"
+          },
+          "deprecated": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "jsonSchema",
+          "required",
+          "regex"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "queryParams": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "jsonSchema": {"$ref": "#/definitions/jsonSchema"},
+          "required": {
+            "type": "boolean"
+          },
+          "deprecated": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "jsonSchema",
+          "required"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "request": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "headers": {"$ref": "#/definitions/headers"},
+        "content":
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "contentType": {
+                "type": ["string"]
+              },
+              "jsonSchema": {"$ref": "#/definitions/jsonSchema"}
+            },
+            "required": [
+              "contentType",
+              "jsonSchema"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "examples": {"$ref": "#/definitions/examples"}
+      },
+      "required": [
+        "description",
+        "headers",
+        "content",
+        "examples"
+      ],
+      "additionalProperties": false
+    },
+    "responses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer"
+          },
+          "description": {
+            "type": "string"
+          },
+          "headers": {"$ref": "#/definitions/headers"},
+          "content":
+          {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "contentType": {
+                  "type": "string"
+                },
+                "jsonSchema": {
+                  "oneOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/definitions/jsonSchema"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "contentType",
+                "jsonSchema"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "examples": {"$ref": "#/definitions/examples"}
+        },
+        "required": [
+          "statusCode",
+          "description",
+          "content",
+          "headers",
+          "examples"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "tags",
+    "deprecated",
+    "enabled",
+    "method",
+    "path",
+    "pathParams",
+    "queryParams",
+    "request",
+    "responses"
+  ],
+  "additionalProperties": false,
+  "definitions": {
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {}
+        },
+        "required": [
+          "name",
+          "value"
+        ]
+      }
+    },
+    "jsonSchema": {
+      "type": "object"
+    },
+    "headers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "jsonSchema": {
+            "type": "object"
+          },
+          "required": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "jsonSchema",
+          "required"
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+}

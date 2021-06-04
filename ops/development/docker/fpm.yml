@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  slim-json-schema-fpm:
+    container_name: slim-json-schema-fpm
+    build:
+      context: .
+      dockerfile: ./fpm/Dockerfile
+    volumes:
+      - ../../../:/opt/app
+      - ~/.aws:/home/www-data/.aws
+
+networks:
+  default:
+    external:
+      name: environment_slim_json_schema

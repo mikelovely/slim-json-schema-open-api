@@ -1,0 +1,29 @@
+#!/usr/bin/env php
+<?php
+
+require dirname(__DIR__).'/vendor/autoload.php';
+
+require dirname(__DIR__).'/app.php';
+
+use App\Command\OpenApiV3GeneratorCommand;
+use App\RouteDefinition\Specification\OpenApiV3Generator;
+use Symfony\Component\Console\Application;
+
+// Get array of controllers.
+$routes = $app->getContainer()->get('router')->getRoutes();
+$controllers = [];
+foreach ($routes as $route) {
+    $controllers[] = $route->getCallable();
+}
+
+// Start of Symfony console.
+$application = new Application();
+
+$application->add(
+    new OpenApiV3GeneratorCommand(
+        new OpenApiV3Generator(),
+        $controllers
+    )
+);
+
+$application->run();

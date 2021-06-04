@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  slim-json-schema-composer:
+    container_name: slim-json-schema-composer
+    image: composer
+    command: install --ignore-platform-reqs
+    volumes:
+      - ../../../:/app
+
+networks:
+  default:
+    external:
+      name: environment_slim_json_schema

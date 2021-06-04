@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  slim-json-schema-nginx:
+    container_name: slim-json-schema-nginx
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    ports:
+      - "8088:80"
+    volumes:
+      - ../../../:/opt/app
+    external_links:
+      - slim-json-schema-fpm
+
+networks:
+  default:
+    external:
+      name: environment_slim_json_schema
